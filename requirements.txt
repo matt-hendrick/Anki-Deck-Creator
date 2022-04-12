@@ -1,0 +1,6 @@
+requests
+datetime
+python-dateutil
+boto3
+bs4
+genanki
