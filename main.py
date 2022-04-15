@@ -10,7 +10,7 @@ from anki_card_model import anki_card_model
 
 def main():
     base_url = "https://www.goethe-verlag.com/book2/"
-    # TODO: Allow passing in variables for both deck name and language
+    # TODO: Allow passing in variables for both deck name, language, and logging verbosity
     new_deck = genanki.Deck(
         2059400110,
         "Hindi Deck")
@@ -77,9 +77,6 @@ def main():
             new_note = genanki.Note(
                 anki_card_model, [english, hindi, transliteration, anki_formatted_audio, anki_formatted_image])
             new_deck.add_note(new_note)
-            print(new_note)
-            print("\n")
-            break
 
     new_package = genanki.Package(new_deck)
     new_package.media_files = list_of_media_files
