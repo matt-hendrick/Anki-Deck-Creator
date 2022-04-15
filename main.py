@@ -46,9 +46,10 @@ def main():
 
             # Download jpg instead of using remote image
             image_file_name = "Hindi" + img_url.split("/")[-1]
-            doc = requests.get(img_url)
-            with open(image_file_name, 'wb') as f:
-                f.write(doc.content)
+            if not os.path.isfile(image_file_name):
+                doc = requests.get(img_url)
+                with open(image_file_name, 'wb') as f:
+                    f.write(doc.content)
             anki_formatted_image = f'<img src="{image_file_name}">'
 
             # add to list of media files to attach to anki package
@@ -77,6 +78,8 @@ def main():
             new_note = genanki.Note(
                 anki_card_model, [english, hindi, transliteration, anki_formatted_audio, anki_formatted_image])
             new_deck.add_note(new_note)
+            print(new_note)
+            print("\n")
 
     new_package = genanki.Package(new_deck)
     new_package.media_files = list_of_media_files
