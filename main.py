@@ -50,6 +50,10 @@ def main():
                 doc = requests.get(img_url)
                 with open(image_file_name, 'wb') as f:
                     f.write(doc.content)
+
+                # try not to clobber the server by mass downloading a bunch of files
+                time.sleep(.5)
+
             anki_formatted_image = f'<img src="{image_file_name}">'
 
             # add to list of media files to attach to anki package
@@ -66,13 +70,13 @@ def main():
                 with open(audio_file_name, 'wb') as f:
                     f.write(doc.content)
 
+                # try not to clobber the server by mass downloading a bunch of files
+                time.sleep(.5)
+
             anki_formatted_audio = "[sound:" + audio_file_name + "]"
 
             # add to list of media files to attach to anki package
             list_of_media_files.append(audio_file_name)
-
-            # try not to clobber the server by mass downloading a bunch of files
-            time.sleep(1)
 
             # create card and add to deck
             new_note = genanki.Note(
