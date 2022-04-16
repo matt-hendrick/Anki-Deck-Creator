@@ -10,12 +10,13 @@ from remove_prefix import remove_prefix
 from anki_card_model import anki_card_model
 
 # Dictionary mapping Goethe Verlag language names to the format used in their URLs
-language_mapping = {'Adyghe': 'AD', 'Afrikaans': 'AF', 'Amharic': 'AM', 'Arabic': 'AR', 'Belarusian': 'BE', 'Bulgarian': 'BG', 'Bengali': 'BN', 'Bosnian': 'BS', 'Catalan': 'CA', 'Czech': 'CS', 'Danish': 'DA', 'German': 'DE', 'Greek': 'EL', 'English UK': 'EN', 'Esperanto': 'EO', 'Spanish': 'ES', 'Estonian': 'ET', 'Persian': 'FA', 'Finnish': 'FI', 'French': 'FR', 'Hebrew': 'HE', 'Hindi': 'HI', 'Croatian': 'HR', 'Hungarian': 'HU', 'Armenian': 'HY', 'Indonesian': 'ID', 'Italian': 'IT', 'Japanese': 'JA', 'Georgian': 'KA',
+LANGUAGE_MAPPING = {'Adyghe': 'AD', 'Afrikaans': 'AF', 'Amharic': 'AM', 'Arabic': 'AR', 'Belarusian': 'BE', 'Bulgarian': 'BG', 'Bengali': 'BN', 'Bosnian': 'BS', 'Catalan': 'CA', 'Czech': 'CS', 'Danish': 'DA', 'German': 'DE', 'Greek': 'EL', 'English UK': 'EN', 'Esperanto': 'EO', 'Spanish': 'ES', 'Estonian': 'ET', 'Persian': 'FA', 'Finnish': 'FI', 'French': 'FR', 'Hebrew': 'HE', 'Hindi': 'HI', 'Croatian': 'HR', 'Hungarian': 'HU', 'Armenian': 'HY', 'Indonesian': 'ID', 'Italian': 'IT', 'Japanese': 'JA', 'Georgian': 'KA',
                     'Kazakh': 'KK', 'Kannada': 'KN', 'Korean': 'KO', 'Lithuanian': 'LT', 'Latvian': 'LV', 'Macedonian': 'MK', 'Marathi': 'MR', 'Dutch': 'NL', 'Norwegian - Nynorsk': 'NN', 'Norwegian': 'NO', 'Punjabi': 'PA', 'Polish': 'PL', 'Portuguese PT': 'PT', 'Portuguese BR': 'PX', 'Romanian': 'RO', 'Russian': 'RU', 'Slovak': 'SK', 'Slovene': 'SL', 'Albanian': 'SQ', 'Serbian': 'SR', 'Swedish': 'SV', 'Tamil': 'TA', 'Telugu': 'TE', 'Thai': 'TH', 'Tigrinya': 'TI', 'Turkish': 'TR', 'Ukrainian': 'UK', 'Urdu': 'UR', 'Vietnamese': 'VI', 'Chinese': 'ZH'}
+BASE_URL = "https://www.goethe-verlag.com/book2/"
 
 
 def generate_goethe_verlag_deck(args):
-    base_url = "https://www.goethe-verlag.com/book2/"
+
     new_deck = genanki.Deck(
         2059400110,
         f"{args.language} Deck")
@@ -31,7 +32,7 @@ def generate_goethe_verlag_deck(args):
         # for one digit numbers, a zero is included in the goethe-verlag url
         if page_number < 10:
             page_number = f"0{page_number}"
-        page_url = f"https://www.goethe-verlag.com/book2/_VOCAB/EM/EM{language_mapping[args.language]}/{page_number}.HTM"
+        page_url = f"https://www.goethe-verlag.com/book2/_VOCAB/EM/EM{LANGUAGE_MAPPING[args.language]}/{page_number}.HTM"
 
         # check page and throw error if page returns anything but 200
         page_status = requests.get(page_url).status_code
@@ -48,7 +49,7 @@ def generate_goethe_verlag_deck(args):
             transliteration = phrase.find("span", class_="Stil39").get_text()
 
             # clean up image url
-            img_url = base_url + \
+            img_url = BASE_URL + \
                 remove_prefix(phrase.find("img").get("src"), "../../../")
 
             # Download jpg instead of using remote image
@@ -71,7 +72,7 @@ def generate_goethe_verlag_deck(args):
                 "source").get("src"), "../../../")
             audio_file_name = args.language + audio_cleaned_path.split("/")[-1]
             if not os.path.isfile(audio_file_name):
-                audio_url = base_url + audio_cleaned_path
+                audio_url = BASE_URL + audio_cleaned_path
                 doc = requests.get(audio_url)
 
                 with open(audio_file_name, 'wb') as f:
