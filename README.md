@@ -10,8 +10,8 @@ To run the script and generate a deck, you must specify the name of the language
 
 An example command is:
 
-    python generate_goether_verlag_deck.py -l Arabic
+    python generate_goethe_verlag_deck.py -l Arabic
 
 To have the scraper print out each new card added to the deck, pass in the -v flag. Example:
 
-    python generate_goether_verlag_deck.py -l Finnish -v
+    python generate_goethe_verlag_deck.py -l Finnish -v
