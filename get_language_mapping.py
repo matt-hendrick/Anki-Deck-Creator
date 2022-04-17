@@ -18,6 +18,7 @@ def get_language_mapping():
 
     print(language_mapping)
 
+    language_name_list.sort()
     print(", ".join(language_name_list))
 
 

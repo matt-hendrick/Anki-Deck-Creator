@@ -17,9 +17,11 @@ BASE_URL = "https://www.goethe-verlag.com/book2/"
 
 def generate_goethe_verlag_deck(args):
 
+    deck_name = args.deckname or f"{args.language} Deck"
+
     new_deck = genanki.Deck(
-        2059400110,
-        f"{args.language} Deck")
+        random.randrange(1 << 30, 1 << 31),
+        deck_name)
 
     list_of_media_files = []
 
@@ -98,6 +100,7 @@ def generate_goethe_verlag_deck(args):
 
     if args.verbosity is not None:
         print(f"Finished deck contains {len(new_deck.notes)} cards.")
+
     new_package = genanki.Package(new_deck)
     new_package.media_files = list_of_media_files
     new_package.write_to_file('output.apkg')
@@ -109,7 +112,9 @@ if __name__ == "__main__":
     parser = ArgumentParser(
         description="Scrape Goethe Verlag language learning resources to generate an Anki deck with audio/video")
     parser.add_argument("-l", "--language",
-                        help="Enter in the name of the language you wish to scrape. Example = 'Arabic'")
+                        help="Enter the name of the language you wish to scrape. Example = 'Arabic'")
+    parser.add_argument("-d", "--deckname",
+                        help="Enter the name of the new name'")
     parser.add_argument("-v", "--verbosity",
                         action="store_true",
                         help="Add this flag to print out each card as the scraper progresses")

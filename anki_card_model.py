@@ -1,7 +1,9 @@
+import random
 import genanki
 
+
 anki_card_model = genanki.Model(
-    1485830179,
+    random.randrange(1 << 30, 1 << 31),
     'Card with Audio/Video',
     fields=[
         {

@@ -6,7 +6,7 @@ Currently, the repo contains one script that can generate Anki decks for 50 lang
 
 To run the script and generate a deck, you must specify the name of the language. The available languages are:
 
-> Adyghe, Afrikaans, Amharic, Arabic, Belarusian, Bulgarian, Bengali, Bosnian, Catalan, Czech, Danish, German, Greek, English UK, Esperanto, Spanish, Estonian, Persian, Finnish, French, Hebrew, Hindi, Croatian, Hungarian, Armenian, Indonesian, Italian, Japanese, Georgian, Kazakh, Kannada, Korean, Lithuanian, Latvian, Macedonian, Marathi, Dutch, Norwegian - Nynorsk, Norwegian, Punjabi, Polish, Portuguese PT, Portuguese BR, Romanian, Russian, Slovak, Slovene, Albanian, Serbian, Swedish, Tamil, Telugu, Thai, Tigrinya, Turkish, Ukrainian, Urdu, Vietnamese, Chinese
+> Adyghe, Afrikaans, Albanian, Amharic, Arabic, Armenian, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Chinese, Croatian, Czech, Danish, Dutch, English UK, Esperanto, Estonian, Finnish, French, Georgian, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Kannada, Kazakh, Korean, Latvian, Lithuanian, Macedonian, Marathi, Norwegian, Norwegian - Nynorsk, Persian, Polish, Portuguese BR, Portuguese PT, Punjabi, Romanian, Russian, Serbian, Slovak, Slovene, Spanish, Swedish, Tamil, Telugu, Thai, Tigrinya, Turkish, Ukrainian, Urdu, Vietnamese
 
 An example command is:
 
