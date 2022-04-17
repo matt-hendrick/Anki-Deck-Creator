@@ -18,7 +18,7 @@ def get_language_mapping():
 
     print(language_mapping)
 
-    print(",".join(language_name_list))
+    print(", ".join(language_name_list))
 
 
 if __name__ == "__main__":
