@@ -1,5 +1,5 @@
 .venv-AnkiDeckCreator
 __pycache__
-output.apkg
 *.mp3
 *.jpg
+*.apkg

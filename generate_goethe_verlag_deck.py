@@ -17,7 +17,11 @@ BASE_URL = "https://www.goethe-verlag.com/book2/"
 
 def generate_goethe_verlag_deck(args):
 
+    # set deck/file names to specified values or fallback to defaults
     deck_name = args.deckname or f"{args.language} Deck"
+    file_name = 'output.apkg'
+    if args.filename is not None and not args.filename.endswith(".apkg"):
+        file_name = args.filename + ".apkg"
 
     new_deck = genanki.Deck(
         random.randrange(1 << 30, 1 << 31),
@@ -27,9 +31,6 @@ def generate_goethe_verlag_deck(args):
 
     # iterates through each category of phrases
     for page_number in range(1, 43):
-
-        # randomize time slept between media downloads
-        sleep_time = random.randint(1, 5)
 
         # for one digit numbers, a zero is included in the goethe-verlag url
         if page_number < 10:
@@ -62,7 +63,7 @@ def generate_goethe_verlag_deck(args):
                     f.write(doc.content)
 
                 # try not to clobber the server by mass downloading a bunch of files
-                time.sleep(sleep_time)
+                time.sleep(random.randint(1, 5))
 
             anki_formatted_image = f'<img src="{image_file_name}">'
 
@@ -81,7 +82,7 @@ def generate_goethe_verlag_deck(args):
                     f.write(doc.content)
 
                 # try not to clobber the server by mass downloading a bunch of files
-                time.sleep(sleep_time)
+                time.sleep(random.randint(1, 5))
 
             anki_formatted_audio = "[sound:" + audio_file_name + "]"
 
@@ -103,7 +104,7 @@ def generate_goethe_verlag_deck(args):
 
     new_package = genanki.Package(new_deck)
     new_package.media_files = list_of_media_files
-    new_package.write_to_file('output.apkg')
+    new_package.write_to_file(file_name)
 
     return new_deck
 
@@ -114,7 +115,9 @@ if __name__ == "__main__":
     parser.add_argument("-l", "--language",
                         help="Enter the name of the language you wish to scrape. Example = 'Arabic'")
     parser.add_argument("-d", "--deckname",
-                        help="Enter the name of the new name'")
+                        help="Enter the name of the new deck'")
+    parser.add_argument("-f", "--filename",
+                        help="Enter the name of the new .apkg file'")
     parser.add_argument("-v", "--verbosity",
                         action="store_true",
                         help="Add this flag to print out each card as the scraper progresses")
