@@ -32,6 +32,9 @@ def generate_goethe_verlag_deck(args):
     # iterates through each category of phrases
     for page_number in range(1, 43):
 
+        # abide by goethe-verlag robots.txt crawl delay
+        time.sleep(random.randint(5, 7))
+
         # for one digit numbers, a zero is included in the goethe-verlag url
         if page_number < 10:
             page_number = f"0{page_number}"
@@ -63,7 +66,7 @@ def generate_goethe_verlag_deck(args):
                     f.write(doc.content)
 
                 # try not to clobber the server by mass downloading a bunch of files
-                time.sleep(random.randint(1, 5))
+                time.sleep(random.randint(5, 7))
 
             anki_formatted_image = f'<img src="{image_file_name}">'
 
@@ -82,7 +85,7 @@ def generate_goethe_verlag_deck(args):
                     f.write(doc.content)
 
                 # try not to clobber the server by mass downloading a bunch of files
-                time.sleep(random.randint(1, 5))
+                time.sleep(random.randint(5, 7))
 
             anki_formatted_audio = "[sound:" + audio_file_name + "]"
 
