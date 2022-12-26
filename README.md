@@ -1,6 +1,6 @@
 # Anki Deck Generator
 
-This is a work in progress repo that generates language Anki decks from publicly available source(s) that provide audio and/or visual in addition to the English and other language text.
+This is a repo that generates language Anki decks from publicly available source(s) that provide audio and/or visual in addition to the English and other language text.
 
 Currently, the repo contains one script that can generate Anki decks for 50 languages using the content from [Goethe-Verlag.com](https://www.goethe-verlag.com/book2/EM/).
 
