@@ -52,7 +52,9 @@ def generate_goethe_verlag_deck(args):
         for phrase in soup.find_all("div", class_="col-sm-3"):
             english = phrase.find("span", class_="Stil36").get_text()
             other_language = phrase.find("span", class_="Stil46").get_text()
-            transliteration = phrase.find("span", class_="Stil39").get_text()
+            # transliteration_span = phrase.find("span", class_="Stil39")
+            # if transliteration_span:
+            #     transliteration = transliteration_span.get_text()
 
             # clean up image url
             img_url = BASE_URL + \
@@ -94,7 +96,7 @@ def generate_goethe_verlag_deck(args):
 
             # create card and add to deck
             new_note = genanki.Note(
-                anki_card_model, [english, other_language, transliteration, anki_formatted_audio, anki_formatted_image])
+                anki_card_model, [english, other_language, anki_formatted_audio, anki_formatted_image])
             new_deck.add_note(new_note)
 
             if args.verbosity is not None:

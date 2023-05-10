@@ -11,11 +11,7 @@ anki_card_model = genanki.Model(
             'font': 'Arial',
         },
         {
-            'name': 'Hindi',
-            'font': 'Arial',
-        },
-        {
-            'name': 'Transliteration',
+            'name': 'Romanian',
             'font': 'Arial',
         },
         {
@@ -29,11 +25,11 @@ anki_card_model = genanki.Model(
         {
             'name': 'Card 1',
             'qfmt': '{{English}}',
-            'afmt': '{{FrontSide}}\n\n<hr id=answer>\n\n{{Hindi}}<br>{{Transliteration}}<br>{{Image}}<br>{{Audio}}',
+            'afmt': '{{FrontSide}}\n\n<hr id=answer>\n\n{{Romanian}}<br>{{Image}}<br>{{Audio}}',
         },
         {
             'name': 'Card 2',
-            'qfmt': '{{Hindi}}<br>{{Transliteration}}<br>{{Audio}}',
+            'qfmt': '{{Romanian}}<br>{{Audio}}',
             'afmt': '{{FrontSide}}\n\n<hr id=answer>\n\n{{English}}<br>{{Image}}',
         },
     ],
